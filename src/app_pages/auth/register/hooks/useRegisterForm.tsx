@@ -28,7 +28,7 @@ export function useRegisterForm() {
 		try {
 			await authService.register(data)
 			toast.success('Create account success')
-			navigate.push(`/auth/login`)
+			navigate(`/auth/login`)
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {
 			toast.error(error?.message ?? 'An unexpected error occurred')
