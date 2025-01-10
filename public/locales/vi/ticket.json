@@ -1,0 +1,40 @@
+{
+	"title": {
+		"create_new_ticket": "Tạo ticket mới",
+		"ticket_information": "Thông tin Ticket"
+	},
+	"label": {
+		"title": "Tiêu đề",
+		"type": "Loại",
+		"CANCEL_ORDER": "Yêu cầu huỷ đơn",
+		"WITHDRAW": "Rút tiền - (Comming soon)",
+		"SUPPORT": "Yêu cầu hỗ trợ",
+		"DEPOSIT": "Yêu cập nạp tiền",
+		"description": "Mô tả",
+		"status": "Trạng thái",
+		"created_at": "Ngày tạo",
+		"updated_at": "Cập nhật",
+		"action": "Hành động",
+		"detail": "Xem chi tiết",
+		"no_chat_to_display": "Chưa có đoạn chat nào",
+		"confirm_close_ticket": "Khi bạn xác nhận đóng, ticket sẽ không thể mở lại.",
+		"message": "Tin nhắn",
+		"view_detail": "Xem chi tiết",
+		"OPENING": "",
+		"sort_by": "Sắp xếp theo",
+		"sort_dir": "Thứ tự",
+		"asc": "Tăng dần",
+		"desc": "Giảm dần"
+	},
+	"button": {
+		"create_new_ticket": "Tạo ticket mới",
+		"close": "Đóng",
+		"back": "Quay lại",
+		"close_ticket": "Đóng ticket này",
+		"send": "Gửi",
+		"confirm": "Xác nhận"
+	},
+	"message": {
+		"required_field": "Trường này là bắt buộc"
+	}
+}

@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* @import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css"; */
+/* @import 'aos/dist/aos.css'; */
+/* @import 'react-toastify/dist/ReactToastify.css'; */
+@font-face {
+	font-family: 'BuenosAiresVN';
+	font-style: normal;
+	font-weight: 300;
+	src: url('/fonts/BuenosAiresLight.ttf') format('truetype');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'BuenosAiresVN';
+	font-style: normal;
+	font-weight: 400;
+	src: url('/fonts/BuenosAiresRegular.ttf') format('truetype');
+	font-display: swap;
+}
+@font-face {
+	font-family: 'BuenosAiresVN';
+	font-style: normal;
+	font-weight: 600;
+	src: url('/fonts/BuenosAiresRegular.ttf') format('truetype');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'BuenosAiresVN';
+	font-style: normal;
+	font-weight: 700;
+	src: url('/fonts/BuenosAiresBold.ttf') format('truetype');
+	font-display: swap;
+}
+
+* {
+	font-family: 'BuenosAiresVN', sans-serif;
+	font-weight: 300;
+}
+
+@media screen and (max-width: 475px) {
+	html,
+	body {
+		overflow-x: hidden;
+	}
+}
+
+@media screen and (min-width: 1200px) {
+	html {
+		font-size: 16px;
+	}
+}
+
+.ps-submenu-expand-icon.css-um1o6k {
+	color: chartreuse;
+}

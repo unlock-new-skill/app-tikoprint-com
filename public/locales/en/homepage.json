@@ -1,0 +1,23 @@
+{
+	"title": {
+		"You_design_we_print_for_you": "Bạn tạo thiết kế, chúng tôi in thành phẩm",
+		"you_sell_it_we_deliver_for_you": "Bạn bán hàng, chúng tôi hoàn thành đơn hàng cho bạn",
+		"step1": "1. Pick",
+		"step2": "2. Customize",
+		"step3": "3. Publish & Selling",
+		"step4": "1. Printed and delivered by TikoPrint",
+		"step1_des": "We have many products ready for customization. Select a product based on its importance to your business. This includes price, model variety, production location, etc. Reduce shipping costs and fulfillment times by using providers closer to a product’s final destination.",
+		"step2_des": "Design unique and impressive print templates that align with trends and attract your customers.",
+		"step3_des": "Sell your products on e-commerce platforms such as Amazon, Etsy, Shopify, TikTok, etc...vv.",
+		"step4_des": "Nice Printtee will help you print your design on products and deliver to your customers."
+	},
+	"label": {
+		"guide": "Seller Guide",
+		"news": "News",
+		"integrations": "Integrations"
+	},
+	"button": {
+		"login": "Login",
+		"register": "Register"
+	}
+}

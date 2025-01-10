@@ -1,0 +1,15 @@
+{
+	"sidebar": {
+		"overview": "Overview",
+		"shop": "Shop",
+		"catalog": "Catalog",
+		"product": "product",
+		"config": "Config",
+		"post": "News - Post",
+		"discount": "Discount",
+		"order": "Order",
+		"fulfill_order": "Print & Ship",
+		"account": "Account",
+		"balance": "Balance"
+	}
+}

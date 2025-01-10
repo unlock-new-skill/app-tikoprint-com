@@ -1,0 +1,28 @@
+{
+	"title": {
+		"4step": "4 Bước để bắt đầu hành trình POD",
+		"You_design_we_print_for_you": "Bạn tạo thiết kế, chúng tôi in thành phẩm",
+		"you_sell_it_we_deliver_for_you": "Bạn bán hàng, chúng tôi hoàn thành đơn hàng",
+		"step1": "1. Chọn sản phẩm",
+		"step2": "2. Tuỳ chỉnh & tạo thiết kế",
+		"step3": "3. Đăng sản phẩm & bán hàng",
+		"step4": "1. In và giao hàng với TikoPrint",
+		"step1_des": "Chúng tôi có nhiều sản phẩm sẵn sàng để tuỳ chỉnh. Với base cost tốt nhất thị trường. Sẵn sàng để bạn bắt đầu hành trình của mình.",
+		"step2_des": "Tạo ra những thiết kế độc đáo và sang tạo, gây ấn tương với khách hàng và bùng nổ doanh thu.",
+		"step3_des": "Bán hàng trên các kênh thương mại điện tử như Amazon, Etsy, Shopify, Titok, hoặc trang web của riêng bạn miễn phí bởi Tikoprint",
+		"step4_des": "Tikoprint sẽ giúp bạn in và giao hàng của bạn, với chính sách đảm bảo hài lòng cho bạn và khách hàng.",
+		"deli_success": "Đơn hàng hoàn thành ",
+		"free_to_start": "Xây dựng trang bán hàng miễn phí",
+		"print_and_deliver_to_your_door": "Đầy đủ tính năng miễn phí",
+		"help_you_fulfillment_order": "Base cost tốt nhất thị trường"
+	},
+	"label": {
+		"guide": "Hướng dẫn",
+		"news": "Tin tức",
+		"integrations": "Tích hợp "
+	},
+	"button": {
+		"login": "Đăng nhập",
+		"register": "Đăng kí"
+	}
+}

@@ -1,0 +1,35 @@
+{
+	"title": {
+		"transaction_history": "Lịch sử giao dịch",
+		"deposit": "Nạp tiền",
+		"deposit_using_usdc_with_coinbase_gateway": "USDC (Mạng Base)",
+		"deposit_using_paypal": "USD Paypal",
+		"auto_deposit": "Tự động xác nhận - Khuyên dùng",
+		"enter_amount_you_want_to_deposit": "Nhập số tiền muốn nạp",
+		"balance": "Số dư"
+	},
+
+	"label": {
+		"balance": "Số dư",
+		"amount": "Số tiền",
+		"type": "Loại",
+		"platform": "Nền tảng",
+		"status": "Trạng thái",
+		"created_at": "Ngày tạo",
+		"change": "Thay đổi",
+		"description": "Mô tả",
+		"payment_gateway": "Cổng thanh toán",
+		"after": "Sau",
+		"before": "Trước",
+		"top_up": "Nạp",
+		"withdraw": "Rút",
+		"payment": "Chi",
+		"deposit": "Nạp tiền"
+	},
+	"placeholder": {
+		"amount": "Nhập số tiền (min: 10)"
+	},
+	"button": {
+		"submit": "Xác nhận"
+	}
+}

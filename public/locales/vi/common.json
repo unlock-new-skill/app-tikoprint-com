@@ -1,0 +1,24 @@
+{
+	"sidebar": {
+		"overview": "Tổng quan",
+		"shop": "Shop",
+		"catalog": "Danh mục",
+		"product": "Sản phẩm",
+		"config": "Cấu hình",
+		"post": "Bài viết",
+		"discount": "Mã giảm giá",
+		"order": "Đơn hàng",
+		"fulfill_order": "In & Giao hàng",
+		"account": "Tài khoản",
+		"balance": "Số dư"
+	},
+	"label": {
+		"balance": "Số dư",
+		"no_data_to_display": "Không có dữ liệu hiển thị",
+		"result": "Kết quả"
+	},
+	"message": {
+		"unxpected_error": "Lỗi không xác định",
+		"loading": "Đang tải"
+	}
+}

@@ -1,0 +1,32 @@
+{
+	"compilerOptions": {
+		"baseUrl": "./src",
+		"paths": {
+			"@api/*": ["api/*"],
+			"@app_pages/*": ["app_pages/*"],
+			"@layout/*": ["layout/*"],
+			"@helper/*": ["helper/*"],
+			"@providers/*": ["providers/*"],
+			"@components/*": ["components/*"],
+			"@hooks/*": ["hooks/*"],
+			"@styles/*": ["styles/*"]
+			// "@coinbase/onchainkit/checkout": ["node_modules/@coinbase/onchainkit/esm/checkout"]
+		},
+		"target": "ES2017",
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"allowJs": true,
+		"skipLibCheck": true,
+		"strict": true,
+		"noEmit": true,
+		"esModuleInterop": true,
+		"module": "esnext",
+		"moduleResolution": "bundler",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"jsx": "preserve",
+		"incremental": true,
+		"noImplicitAny": false
+	},
+	"include": ["src/**/*.ts", "src/**/*.tsx", "./src/@types"],
+	"exclude": ["node_modules"]
+}
