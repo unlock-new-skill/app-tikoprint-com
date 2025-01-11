@@ -15,39 +15,39 @@ const LazyTicket = lazy(() => import('@app_pages/ticket/listpage'))
 const LazyTicketDetail = lazy(() => import('@app_pages/ticket/detailpage'))
 
 const pages = [
-	{
-		path: '/',
-		element: <Navigate to={'/dashboard'} />
-	},
-	{
-		path: '/auth/login',
-		element: <LazyLogin />
-	},
-	{
-		path: '/dashboard',
-		element: <LazyDashboard />
-	},
-	{
-		path: '/auth/register',
-		element: <LazyRegister />
-	},
+	// {
+	// 	path: '/',
+	// 	element: <Navigate to={'/dashboard'} />
+	// },
+	// {
+	// 	path: '/auth/login',
+	// 	element: <LazyLogin />
+	// },
+	// {
+	// 	path: '/dashboard',
+	// 	element: <LazyDashboard />
+	// },
+	// {
+	// 	path: '/auth/register',
+	// 	element: <LazyRegister />
+	// },
 
-	{
-		path: '/print-and-ship',
-		element: <LazyPrintAndShip />
-	},
-	{
-		path: '/print-and-ship/new-order',
-		element: <LazyPrintAndShipNewOrder />
-	},
-	{ path: '/balance', element: <LazyBalance /> },
-	{ path: '/balance/deposit', element: <LazyDeposit /> },
-	{ path: '/ticket', element: <LazyTicket /> },
-	{ path: '/ticket/:id', element: <LazyTicketDetail /> },
+	// {
+	// 	path: '/print-and-ship',
+	// 	element: <LazyPrintAndShip />
+	// },
+	// {
+	// 	path: '/print-and-ship/new-order',
+	// 	element: <LazyPrintAndShipNewOrder />
+	// },
+	// { path: '/balance', element: <LazyBalance /> },
+	// { path: '/balance/deposit', element: <LazyDeposit /> },
+	// { path: '/ticket', element: <LazyTicket /> },
+	// { path: '/ticket/:id', element: <LazyTicketDetail /> },
 
 	{
 		path: '*',
-		element: <>NOT FOUND PAGE</>
+		element: <>SERVICE COMMING SOON</>
 	}
 ]
 export default function AppRouter() {
