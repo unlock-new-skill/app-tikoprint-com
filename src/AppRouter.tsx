@@ -50,6 +50,7 @@ const pages = [
 		element: <>NOT FOUND PAGE</>
 	}
 ]
+// 1
 export default function AppRouter() {
 	//   const { user, isLoading } = useUserContext();
 
