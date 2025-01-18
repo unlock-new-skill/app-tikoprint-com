@@ -15,7 +15,8 @@
 	"label": {
 		"balance": "Số dư",
 		"no_data_to_display": "Không có dữ liệu hiển thị",
-		"result": "Kết quả"
+		"result": "Kết quả",
+		"logout": "Đăng xuất"
 	},
 	"message": {
 		"unxpected_error": "Lỗi không xác định",

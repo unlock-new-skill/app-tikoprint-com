@@ -5,6 +5,8 @@ import { CircularProgress } from '@nextui-org/react'
 
 const LazyLogin = lazy(() => import('@app_pages/auth/login'))
 const LazyRegister = lazy(() => import('@app_pages/auth/register'))
+const LazyConfirmCode = lazy(() => import('@app_pages/auth/confirm_email'))
+const LazyForgotPassword = lazy(() => import('@app_pages/auth/forgot-password'))
 
 const LazyDashboard = lazy(() => import('@app_pages/dasboard'))
 const LazyDeposit = lazy(() => import('@app_pages/balance/deposit'))
@@ -22,6 +24,14 @@ const pages = [
 	{
 		path: '/auth/login',
 		element: <LazyLogin />
+	},
+	{
+		path: '/auth/confirm-email',
+		element: <LazyConfirmCode />
+	},
+	{
+		path: '/auth/forgot-password',
+		element: <LazyForgotPassword />
 	},
 	{
 		path: '/dashboard',

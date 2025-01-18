@@ -31,6 +31,22 @@ class AuthService extends BaseService<any, any> {
 	loginGoogle = (data: any) => {
 		return this.request.post<ApiDataRes<LoginResDto>>('/api/auth/seller/login-google', data)
 	}
+
+	getVerifyMail = data => {
+		return this.request.post('/api/auth/send-verification-code', data)
+	}
+
+	verifyCode = data => {
+		return this.request.post('/api/auth/verify-code', data)
+	}
+
+	getForgotPasswordMail = data => {
+		return this.request.post('/api/auth/send-forgot-password-code', data)
+	}
+
+	confirmResetPassword = data => {
+		return this.request.post('/api/auth/reset-password', data)
+	}
 }
 
 export const authService = new AuthService()

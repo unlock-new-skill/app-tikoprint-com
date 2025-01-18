@@ -216,11 +216,11 @@ export default function DetailTicket() {
 								) : (
 									<p className="h-max">{t('label.message')}</p>
 								)}
-								<div className="grid grid-cols-1 gap-3 h-[55vh] overflow-y-scroll py-1 ">
+								<div className="flex flex-col gap-3 h-[55vh] overflow-y-scroll py-1 ">
 									{fields.map(field => {
 										return (
 											<div
-												className={clsx('flex ', {
+												className={clsx('flex h-max', {
 													'justify-start': field?.role === 'SELLER',
 													'justify-end': field?.role !== 'SELLER'
 												})}

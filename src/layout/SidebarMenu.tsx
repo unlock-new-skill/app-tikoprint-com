@@ -1,29 +1,29 @@
 import { ReactElement } from 'react'
 import { MdDashboard } from 'react-icons/md'
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar'
-import { FaCaretSquareLeft, FaMoneyBill, FaPager, FaStore } from 'react-icons/fa'
+import { FaCaretSquareLeft, FaMoneyBill } from 'react-icons/fa'
 type ItemType = 'item' | 'group'
-import { BiSolidCategoryAlt, BiSolidPackage, BiWorld } from 'react-icons/bi'
+import { BiSolidPackage, BiWorld } from 'react-icons/bi'
 import { useLayoutContext } from './Layout'
 import clsx from 'clsx'
 import {
 	Avatar,
 	Button,
 	ButtonGroup,
-	Chip,
+	// Chip,
 	Popover,
 	PopoverContent,
 	PopoverTrigger
 } from '@nextui-org/react'
 import { useUserContext } from '@providers/UserProvider'
-import { GiClothes } from 'react-icons/gi'
-import { BsFillPostcardFill, BsThreeDotsVertical } from 'react-icons/bs'
+// import { GiClothes } from 'react-icons/gi'
+import { BsThreeDotsVertical } from 'react-icons/bs'
 import { Image } from '@nextui-org/react'
-import { RiDiscountPercentLine } from 'react-icons/ri'
+// import { RiDiscountPercentLine } from 'react-icons/ri'
 
 import { useTranslation } from 'react-i18next'
 import { Link, useNavigate } from 'react-router-dom'
-import { FaTicket } from 'react-icons/fa6'
+import { FaStar, FaTicket } from 'react-icons/fa6'
 // import { ChangeLanguage } from '@app_pages/homepage/components/Header'
 interface ItemProps {
 	link: string
@@ -50,55 +50,55 @@ export default function SideBarMenu() {
 			),
 			type: 'item'
 		},
-		{
-			link: '#',
-			label: t('sidebar.shop'),
-			icon: (
-				<div className="p-1 border rounded-md border-primary-500">
-					<FaStore className="text-primary-500" />
-				</div>
-			),
-			type: 'group',
-			children: [
-				{
-					link: '/shop/catalog',
-					label: t('sidebar.catalog'),
-					icon: <BiSolidCategoryAlt className="text-primary-500" />,
-					type: 'item'
-				},
-				{
-					link: '/shop/product',
-					label: t('sidebar.product'),
-					icon: <GiClothes className="text-primary-500" />,
-					type: 'item'
-				},
+		// {
+		// 	link: '#',
+		// 	label: t('sidebar.shop'),
+		// 	icon: (
+		// 		<div className="p-1 border rounded-md border-primary-500">
+		// 			<FaStore className="text-primary-500" />
+		// 		</div>
+		// 	),
+		// 	type: 'group',
+		// 	children: [
+		// 		{
+		// 			link: '/shop/catalog',
+		// 			label: t('sidebar.catalog'),
+		// 			icon: <BiSolidCategoryAlt className="text-primary-500" />,
+		// 			type: 'item'
+		// 		},
+		// 		{
+		// 			link: '/shop/product',
+		// 			label: t('sidebar.product'),
+		// 			icon: <GiClothes className="text-primary-500" />,
+		// 			type: 'item'
+		// 		},
 
-				{
-					link: '/shop/discount',
-					label: t('sidebar.discount'),
-					icon: <RiDiscountPercentLine className="text-primary-500" />,
-					type: 'item'
-				},
-				{
-					link: '/shop/print-and-ship',
-					label: t('sidebar.order'),
-					icon: <BsFillPostcardFill className="text-primary-500" />,
-					type: 'item'
-				},
-				{
-					link: '/shop/post',
-					label: t('sidebar.post'),
-					icon: <BsFillPostcardFill className="text-primary-500" />,
-					type: 'item'
-				},
-				{
-					link: '/shop/config',
-					label: t('sidebar.config'),
-					icon: <FaPager className="text-primary-500" />,
-					type: 'item'
-				}
-			]
-		},
+		// 		{
+		// 			link: '/shop/discount',
+		// 			label: t('sidebar.discount'),
+		// 			icon: <RiDiscountPercentLine className="text-primary-500" />,
+		// 			type: 'item'
+		// 		},
+		// 		{
+		// 			link: '/shop/print-and-ship',
+		// 			label: t('sidebar.order'),
+		// 			icon: <BsFillPostcardFill className="text-primary-500" />,
+		// 			type: 'item'
+		// 		},
+		// 		{
+		// 			link: '/shop/post',
+		// 			label: t('sidebar.post'),
+		// 			icon: <BsFillPostcardFill className="text-primary-500" />,
+		// 			type: 'item'
+		// 		},
+		// 		{
+		// 			link: '/shop/config',
+		// 			label: t('sidebar.config'),
+		// 			icon: <FaPager className="text-primary-500" />,
+		// 			type: 'item'
+		// 		}
+		// 	]
+		// },
 		// {
 		// 	link: '#',
 		// 	label: 'Catalog',
@@ -278,56 +278,80 @@ export default function SideBarMenu() {
 
 function AppLogo({ collapsed }: { collapsed: boolean }) {
 	console.log('🚀 ~ AppLogo ~ collapsed:', collapsed)
+	const {
+		i18n: { language }
+	} = useTranslation()
 
 	return (
-		<div className={clsx(' flex justify-center p-2 border-r', {})}>
-			<div className="relative aspect-[1.4/1] w-full max-w-[100px]">
-				<Image src={'/images/logo.png'} alt="1" title="Tiko Print" />
-			</div>
+		<div className={clsx(' flex gap-2 justify-center p-2 border-r items-center border-b', {})}>
+			<Image src={'/icon.png'} alt="1" title="Tiko Print" className="max-w-[36px]" />
+			{!collapsed && (
+				<p className="font-bold text-[1.4rem]">
+					<span
+						className={clsx('logo', {
+							'text-red-500': language === 'vi',
+							'text-primary-500': language !== 'vi'
+						})}
+					>
+						Tikoprint
+					</span>
+					{/* <span className="text-[#86CBF2]">.com</span> */}
+				</p>
+			)}
 		</div>
 	)
 }
 
 function User({ collapsed }: { collapsed: boolean }) {
 	const { user } = useUserContext()
-	console.log('🚀 ~ User ~ user:', user)
+	// console.log('🚀 ~ User ~ user:', user)
 	const { t } = useTranslation('common')
 	return (
-		<Popover placement="top" showArrow>
-			<PopoverTrigger>
-				<div className="flex gap-2 bg-white p-2 rounded-md items-center w-max mx-auto cursor-pointer">
-					<Avatar size="md" src="https://placecats.com/300/200" />
-					{!collapsed && (
-						<>
-							<p className="truncate">{user?.first_name}</p>
-							<BsThreeDotsVertical />
-						</>
-					)}
-				</div>
-			</PopoverTrigger>
-			<PopoverContent>
-				<div className="flex flex-col gap-1 py-2">
-					<Link to={'/balance/deposit'}>
-						<Chip size="md" variant="bordered" color="primary">
-							{t('label.balance')}: {user?.balance}$
-						</Chip>
-					</Link>
-
+		<>
+			<Popover placement="top" showArrow>
+				<PopoverTrigger>
 					<Button
+						className="flex gap-2  rounded-md items-center  cursor-pointer "
+						fullWidth
+						color="primary"
+						isIconOnly={collapsed}
 						variant="flat"
-						color="danger"
-						size="sm"
-						onPress={() => {
-							localStorage.clear()
-							sessionStorage.clear()
-							window.location.pathname = '/auth/login'
-						}}
 					>
-						{t('label.logout')}{' '}
+						<Avatar size="sm" src="https://placecats.com/300/200" />
+						{!collapsed && (
+							<>
+								<p className="truncate">{user?.first_name}</p>
+								<BsThreeDotsVertical />
+							</>
+						)}
 					</Button>
+				</PopoverTrigger>
+				<PopoverContent>
+					<div className="flex flex-col gap-1 py-2">
+						<Button
+							variant="flat"
+							color="danger"
+							size="sm"
+							onPress={() => {
+								localStorage.clear()
+								sessionStorage.clear()
+								window.location.pathname = '/auth/login'
+							}}
+						>
+							{t('label.logout')}{' '}
+						</Button>
+					</div>
+				</PopoverContent>
+			</Popover>
+			{!collapsed && (
+				<div className=" flex justify-center py-1">
+					<Link to={'/balance/deposit'} className="text-primary-500">
+						{/* <Chip size="md" variant="flat" color="primary"> */}
+						{t('label.balance')}: {user?.balance}${/* </Chip> */}
+					</Link>
 				</div>
-			</PopoverContent>
-		</Popover>
+			)}
+		</>
 	)
 }
 
@@ -335,6 +359,7 @@ export function ChangeLanguage() {
 	const {
 		i18n: { language, changeLanguage }
 	} = useTranslation()
+	// console.log('🚀 ~ ChangeLanguage ~ language:', language)
 	// console.log('🚀 ~ ChangeLanguage ~ router:', router)
 	// const changeLanguage = (lng: 'vi' | 'en') => {
 	// 	Cookies.set('NEXT_LOCALE', lng, { expires: 365 })
@@ -352,17 +377,7 @@ export function ChangeLanguage() {
 				})}
 				onPress={() => changeLanguage('vi')}
 			>
-				{language === 'vi' && (
-					<Image
-						width={16}
-						height={16}
-						className="rounded-sm"
-						src={
-							'https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flag_of_Vietnam.svg/510px-Flag_of_Vietnam.svg.png'
-						}
-						alt="vi"
-					/>
-				)}
+				{language === 'vi' && <FaStar className="text-yellow-200" />}
 
 				<span>Vi</span>
 			</Button>
@@ -371,7 +386,7 @@ export function ChangeLanguage() {
 				size="sm"
 				onPress={() => changeLanguage('en')}
 				className={clsx('flex gap-1', {
-					'bg-primary-500 text-white': language === 'en'
+					'bg-primary-500 text-white': language.includes('en')
 				})}
 			>
 				<BiWorld />

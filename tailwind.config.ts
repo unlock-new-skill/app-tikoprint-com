@@ -19,6 +19,25 @@ module.exports = {
 		extend: {
 			boxShadow: {
 				'common-box': 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px'
+			},
+			keyframes: {
+				'move-1': {
+					'0%, 100%': { transform: 'translate(0, 0)' },
+					'50%': { transform: 'translate(6px, -6px)' }
+				},
+				'move-2': {
+					'0%, 100%': { transform: 'translate(0, 0)' },
+					'50%': { transform: 'translate(0, -6px)' }
+				},
+				'move-3': {
+					'0%, 100%': { transform: 'translate(0, 0)' },
+					'25%': { transform: 'translate(-6px, -6px)' }
+				}
+			},
+			animation: {
+				'move-1': 'move-1 4s ease-in infinite',
+				'move-2': 'move-2 6s ease-in infinite',
+				'move-3': 'move-3 8s ease-in infinite'
 			}
 		}
 	},

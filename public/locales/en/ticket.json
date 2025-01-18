@@ -1,1 +1,40 @@
-{}
+{
+    "title": {
+        "create_new_ticket": "Create New Ticket",
+        "ticket_information": "Ticket Information"
+    },
+    "label": {
+        "title": "Title",
+        "type": "Type",
+        "CANCEL_ORDER": "Request to Cancel Order",
+        "WITHDRAW": "Withdraw Money - (Coming Soon)",
+        "SUPPORT": "Support Request",
+        "DEPOSIT": "Deposit Request",
+        "description": "Description",
+        "status": "Status",
+        "created_at": "Created At",
+        "updated_at": "Updated At",
+        "action": "Action",
+        "detail": "View Details",
+        "no_chat_to_display": "No chat available",
+        "confirm_close_ticket": "Once you confirm closing, this ticket cannot be reopened.",
+        "message": "Message",
+        "view_detail": "View Details",
+        "OPENING": "",
+        "sort_by": "Sort By",
+        "sort_dir": "Order",
+        "asc": "Ascending",
+        "desc": "Descending"
+    },
+    "button": {
+        "create_new_ticket": "Create New Ticket",
+        "close": "Close",
+        "back": "Go Back",
+        "close_ticket": "Close This Ticket",
+        "send": "Send",
+        "confirm": "Confirm"
+    },
+    "message": {
+        "required_field": "This field is required"
+    }
+}

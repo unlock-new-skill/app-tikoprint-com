@@ -3,11 +3,11 @@
 		"transaction_history": "Transaction History",
 		"deposit": "Deposit",
 		"deposit_using_usdc_with_coinbase_gateway": "USDC (Base Network)",
-		"deposit_using_paypal": "USD Paypal",
-		"auto_deposit": "Auto comfirm - recommend",
-		"enter_amount_you_want_to_deposit": "Enter top up amount"
+		"deposit_using_paypal": "USD via PayPal",
+		"auto_deposit": "Auto Confirm - Recommended",
+		"enter_amount_you_want_to_deposit": "Enter the amount you want to deposit",
+		"balance": "Balance"
 	},
-
 	"label": {
 		"balance": "Balance",
 		"amount": "Amount",
@@ -19,12 +19,18 @@
 		"description": "Description",
 		"payment_gateway": "Payment Gateway",
 		"after": "After",
-		"before": "Before"
+		"before": "Before",
+		"top_up": "Top-up",
+		"withdraw": "Withdraw",
+		"payment": "Payment",
+		"deposit": "Deposit",
+		"click_button_to_process": "Click button to continue"
 	},
 	"placeholder": {
-		"amount": "Enter amount (min: 10)"
+		"amount": "Enter the amount (min: 10)"
 	},
 	"button": {
-		"submit": "Submit"
+		"submit": "Submit",
+		"pay": "Pay"
 	}
 }

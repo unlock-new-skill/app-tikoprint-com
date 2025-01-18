@@ -5,13 +5,14 @@ import yup from '@helper/yup-valiator'
 import { yupResolver } from '@hookform/resolvers/yup'
 
 import { PayPalButtons, PayPalScriptProvider } from '@paypal/react-paypal-js'
-import { Button, Image, Modal, ModalBody, ModalContent, ModalHeader } from '@nextui-org/react'
+import { Button, Modal, ModalBody, ModalContent, ModalHeader } from '@nextui-org/react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
 import clsx from 'clsx'
 import { useUserContext } from '@providers/UserProvider'
+import { useRequest } from 'ahooks'
 
 export function usePaypalFormModal() {
 	const { getPersonalInfo } = useUserContext()
@@ -60,6 +61,20 @@ export function usePaypalFormModal() {
 		}
 	})
 
+	useRequest(balanceService.getPendingTrans, {
+		defaultParams: ['PAYPAL'],
+		onSuccess: data => {
+			if (data?.data?.data) {
+				setOrder({
+					id: data.data.data?.payment_gateway_order_id as string,
+					amount: data.data.data.amount
+				})
+			}
+		}
+	})
+	//  COINBASE
+	// 	PAYPAL
+
 	const render = () => {
 		return (
 			<Modal isOpen={open} onClose={handleClose} size="xs">
@@ -69,54 +84,54 @@ export function usePaypalFormModal() {
 					</ModalHeader>
 					<ModalBody>
 						<form className={clsx('flex flex-col gap-2')} onSubmit={onSubmit}>
-							<div className="flex gap-1 items-center">
-								<Button
-									aria-label="button"
-									size="sm"
-									color="primary"
-									onPress={() => setValue('amount', 200)}
-								>
-									200
-								</Button>
-								<Button
-									aria-label="button"
-									size="sm"
-									color="secondary"
-									onPress={() => setValue('amount', 500)}
-								>
-									500
-								</Button>
-								<Button
-									aria-label="button"
-									size="sm"
-									color="success"
-									onPress={() => setValue('amount', 1000)}
-								>
-									1000
-								</Button>
-								<Button
-									aria-label="button"
-									size="sm"
-									color="danger"
-									onPress={() => setValue('amount', 5000)}
-								>
-									5000
-								</Button>
-							</div>
+							{!order ? (
+								<div className="flex gap-1 items-center">
+									<Button
+										aria-label="button"
+										size="sm"
+										color="primary"
+										onPress={() => setValue('amount', 200)}
+									>
+										200
+									</Button>
+									<Button
+										aria-label="button"
+										size="sm"
+										color="secondary"
+										onPress={() => setValue('amount', 500)}
+									>
+										500
+									</Button>
+									<Button
+										aria-label="button"
+										size="sm"
+										color="success"
+										onPress={() => setValue('amount', 1000)}
+									>
+										1000
+									</Button>
+									<Button
+										aria-label="button"
+										size="sm"
+										color="danger"
+										onPress={() => setValue('amount', 5000)}
+									>
+										5000
+									</Button>
+								</div>
+							) : (
+								<p>{t('label.click_button_to_process')}</p>
+							)}
+
 							<BaseInputNumber
 								control={control}
 								name="amount"
 								label={t('label.amount')}
 								placeholder={t('label.amount')}
 								isRequired
+								isDisabled={Boolean(order?.id)}
 								min={0}
-								endContent={
-									<Image
-										alt="usdc"
-										src="https://s2.coinmarketcap.com/static/img/coins/200x200/3408.png"
-										width={24}
-									/>
-								}
+								endContent={<span>$</span>}
 							/>
 							{!order && (
 								<Button

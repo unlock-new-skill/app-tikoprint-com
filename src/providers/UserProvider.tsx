@@ -27,7 +27,7 @@ export default function UserProvider({ children }: Props) {
 	const [user, setUser] = useSafeState<UserDto>({} as UserDto)
 	// console.log('🚀 ~ UserProvider ~ user:', user)
 
-	const router = useNavigate()
+	const navigate = useNavigate()
 	const { pathname } = useLocation()
 	// console.log('🚀 ~ UserProvider ~ pathname:', pathname)
 
@@ -35,6 +35,14 @@ export default function UserProvider({ children }: Props) {
 		try {
 			const userRes = await userService.getPersonalInfo()
 			const { data } = userRes
+			if (data.data.status === 'WAIT_FOR_VERIFY') {
+				navigate('/auth/confirm-email', {
+					state: {
+						email: data.data.email
+					}
+				})
+				return
+			}
 			setUser(data.data)
 		} catch (e: unknown) {
 			if (e instanceof ApiException) {
@@ -54,12 +62,12 @@ export default function UserProvider({ children }: Props) {
 			// console.log('🚀 ~ useEffect ~ currentTime:', Number(expiredTime))
 
 			if (!localToken || !expiredTime || currentTime > Number(expiredTime)) {
-				router('/auth/login')
+				navigate('/auth/login')
 			} else {
 				getPersonalInfo()
 			}
 		}
-	}, [pathname, router, getPersonalInfo])
+	}, [pathname, navigate, getPersonalInfo])
 
 	const handleLogin = useCallback(
 		async (data: LoginDto) => {
@@ -70,7 +78,7 @@ export default function UserProvider({ children }: Props) {
 				toast.success('Login success')
 				getPersonalInfo()
 				if (pathname.includes('/auth')) {
-					router('/dashboard')
+					navigate('/dashboard')
 				}
 			} catch (e: unknown) {
 				if (typeof e === 'object' && e !== null && 'message' in e) {
@@ -81,7 +89,7 @@ export default function UserProvider({ children }: Props) {
 				}
 			}
 		},
-		[pathname, router, getPersonalInfo]
+		[pathname, navigate, getPersonalInfo]
 	)
 
 	const handleLoginGoogle = useCallback(
@@ -93,21 +101,22 @@ export default function UserProvider({ children }: Props) {
 				toast.success(data?.message ?? 'Login Success')
 				getPersonalInfo()
 				if (pathname.includes('/auth')) {
-					router('/dashboard')
+					navigate('/dashboard')
 				}
 			} catch (e: any) {
 				toast.error(e?.message ?? 'Server error')
 			}
 		},
-		[pathname, router, getPersonalInfo]
+		[pathname, navigate, getPersonalInfo]
 	)
 
 	const handleLogout = useCallback(async () => {
 		try {
 			await userService.getPersonalInfo()
-			window.localStorage.clear()
+			window.localStorage.removeItem('token')
+			window.localStorage.removeItem('expired')
 			window.sessionStorage.clear()
-			router('/auth/login')
+			navigate('/auth/login')
 		} catch (e: unknown) {
 			if (e instanceof ApiException) {
 				toast.error(e.message)
@@ -115,7 +124,7 @@ export default function UserProvider({ children }: Props) {
 				toast.error('An unexpected error occurred')
 			}
 		}
-	}, [router])
+	}, [navigate])
 
 	const context: UserContextProps = {
 		user,

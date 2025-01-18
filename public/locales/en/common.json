@@ -3,13 +3,23 @@
 		"overview": "Overview",
 		"shop": "Shop",
 		"catalog": "Catalog",
-		"product": "product",
-		"config": "Config",
-		"post": "News - Post",
-		"discount": "Discount",
+		"product": "Product",
+		"config": "Configuration",
+		"post": "Post",
+		"discount": "Discount Code",
 		"order": "Order",
 		"fulfill_order": "Print & Ship",
 		"account": "Account",
 		"balance": "Balance"
+	},
+	"label": {
+		"balance": "Balance",
+		"no_data_to_display": "No data to display",
+		"result": "Result",
+		"logout": "Logout"
+	},
+	"message": {
+		"unxpected_error": "Unexpected error",
+		"loading": "Loading"
 	}
 }

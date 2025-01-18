@@ -1,1 +1,9 @@
-{}
+{
+    "title": {
+        "activity_summary": "Sales Activity Overview"
+    },
+    "label": {
+        "order": "Order",
+        "total_paid": "Total Paid"
+    }
+}

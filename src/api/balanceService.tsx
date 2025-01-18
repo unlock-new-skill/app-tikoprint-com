@@ -68,6 +68,15 @@ class Balance extends BaseService<TransactionDto, QueryListTransactiontDto> {
 			`/api/seller/balance/deposit/paypal-gateway/${orderId}`
 		)
 	}
+
+	getPendingTrans = (gateway: string) => {
+		return this.request.get<ApiDataRes<null | TransactionDto>>(
+			`/api/seller/balance/deposit/pending-transaction`,
+			{
+				params: { gateway }
+			}
+		)
+	}
 }
 
 export const balanceService = new Balance()
