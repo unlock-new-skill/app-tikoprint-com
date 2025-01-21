@@ -13,6 +13,7 @@ import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
 import clsx from 'clsx'
+import { useRequest } from 'ahooks'
 
 export function useCoinbaseFormModal() {
 	const [open, setOpen] = useState(false)
@@ -29,7 +30,7 @@ export function useCoinbaseFormModal() {
 		setChargeId(null)
 	}
 	const schema = yup.object().shape({
-		amount: yup.number().required(t('message.invalid_number'))
+		amount: yup.number().required(t('message.invalid_number')).min(5)
 	})
 	const {
 		control,
@@ -59,6 +60,21 @@ export function useCoinbaseFormModal() {
 		}
 	})
 
+	useRequest(balanceService.getPendingTrans, {
+		defaultParams: ['COINBASE'],
+		onSuccess: data => {
+			if (data?.data?.data) {
+				console.log('🚀 ~ useCoinbaseFormModal ~ data?.data?.data:', data?.data?.data)
+				// setOrder({
+				// 	id: data.data.data?.payment_gateway_order_id as string,
+				// 	amount: data.data.data.amount
+				// })
+			}
+		}
+	})
+	//  COINBASE
+	// 	PAYPAL
+
 	const render = () => {
 		return (
 			<Modal isOpen={open} onClose={handleClose} size="xs">
@@ -68,40 +84,44 @@ export function useCoinbaseFormModal() {
 					</ModalHeader>
 					<ModalBody>
 						<form className={clsx('flex flex-col gap-2')} onSubmit={onSubmit}>
-							<div className="flex gap-1 items-center">
-								<Button
-									aria-label="button"
-									size="sm"
-									color="primary"
-									onPress={() => setValue('amount', 200)}
-								>
-									200
-								</Button>
-								<Button
-									aria-label="button"
-									size="sm"
-									color="secondary"
-									onPress={() => setValue('amount', 500)}
-								>
-									500
-								</Button>
-								<Button
-									aria-label="button"
-									size="sm"
-									color="success"
-									onPress={() => setValue('amount', 1000)}
-								>
-									1000
-								</Button>
-								<Button
-									aria-label="button"
-									size="sm"
-									color="danger"
-									onPress={() => setValue('amount', 5000)}
-								>
-									5000
-								</Button>
-							</div>
+							{!chargeId ? (
+								<div className="flex gap-1 items-center">
+									<Button
+										aria-label="button"
+										size="sm"
+										color="primary"
+										onPress={() => setValue('amount', 200)}
+									>
+										200
+									</Button>
+									<Button
+										aria-label="button"
+										size="sm"
+										color="secondary"
+										onPress={() => setValue('amount', 500)}
+									>
+										500
+									</Button>
+									<Button
+										aria-label="button"
+										size="sm"
+										color="success"
+										onPress={() => setValue('amount', 1000)}
+									>
+										1000
+									</Button>
+									<Button
+										aria-label="button"
+										size="sm"
+										color="danger"
+										onPress={() => setValue('amount', 5000)}
+									>
+										5000
+									</Button>
+								</div>
+							) : (
+								<p>{t('label.click_button_to_process')}</p>
+							)}
 							<BaseInputNumber
 								control={control}
 								name="amount"
@@ -137,16 +157,11 @@ export function useCoinbaseFormModal() {
 								<>
 									<Checkout chargeHandler={async () => chargeId?.chargeId}>
 										<CheckoutButton
-										// coinbaseBranded
-										// text={`${t('button.pay')}: ${
-										// 	chargeId?.amount ?? ''
-										// } `}
-										// className={clsx(
-										// 	'bg-primary-500 text-white',
-										// 	{
-										// 		hidden: !chargeId?.amount
-										// 	}
-										// )}
+											// coinbaseBranded
+											text={`${t('button.pay')}: ${chargeId?.amount ?? ''} $`}
+											className={clsx('bg-primary-500 text-white', {
+												hidden: !chargeId?.amount
+											})}
 										/>
 										<CheckoutStatus />
 									</Checkout>

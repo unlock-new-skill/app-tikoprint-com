@@ -6,7 +6,7 @@ import { Button, Chip, Tooltip } from '@nextui-org/react'
 import moment from 'moment'
 import { useTranslation } from 'react-i18next'
 import { FaEye } from 'react-icons/fa6'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import FilterTicketForm from './components/FilterTicketForm'
 
 export default function TicketListPasge() {
@@ -72,11 +72,12 @@ export default function TicketListPasge() {
 
 	return (
 		<>
-			<h3 className=" py-2 font-bold">Ticket</h3>
-			{/* <div className="flex gap-2">
-				<Balancebox />
-				<MoneyChart />
-			</div> */}
+			<div className="flex gap-2 justify-between items-center">
+				<h3 className=" py-2 font-bold">Ticket</h3>
+				<Link to={'/ticket/new'}>
+					<Button color="primary">{t('button.create_new_ticket')}</Button>
+				</Link>
+			</div>
 			<BaseTable
 				enable_select_row={false}
 				apiService={ticketService.list}

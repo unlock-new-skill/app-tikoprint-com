@@ -7,7 +7,7 @@ export interface UserDto {
 	last_name: string
 	balance: number
 	createdAt: string
-	status: 'WAITING_FOR_APPROVAL' | 'ACTIVE'
+	status: 'WAIT_FOR_VERIFY' | 'ACTIVE'
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

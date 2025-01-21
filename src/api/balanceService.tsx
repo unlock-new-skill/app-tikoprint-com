@@ -58,14 +58,40 @@ class Balance extends BaseService<TransactionDto, QueryListTransactiontDto> {
 	}
 
 	requestDepositPaypal = (data: RequestDepositCoinbaseDto) => {
-		return this.request.post<ApiDataRes<string>>(
-			'/api/seller/balance/deposit/paypal-gateway',
-			data
-		)
+		return this.request.post<
+			ApiDataRes<{
+				orderId: string
+				transactionId: string
+			}>
+		>('/api/seller/balance/deposit/paypal-gateway', data)
 	}
 	captureDepositPaypal = (orderId: string) => {
 		return this.request.post<ApiDataRes<string>>(
 			`/api/seller/balance/deposit/paypal-gateway/${orderId}`
+		)
+	}
+
+	requestDepositBank = (data: RequestDepositCoinbaseDto) => {
+		return this.request.post<
+			ApiDataRes<{
+				checkoutUrl: string
+				transactionId: string
+			}>
+		>('/api/seller/balance/deposit/bank-gateway', data)
+	}
+
+	getPendingTrans = (gateway: string) => {
+		return this.request.get<ApiDataRes<null | TransactionDto>>(
+			`/api/seller/balance/deposit/pending-transaction`,
+			{
+				params: { gateway }
+			}
+		)
+	}
+
+	cancelDepositTransaction = (transactionId: string) => {
+		return this.request.patch<ApiDataRes<true>>(
+			`/api/seller/balance/deposit/${transactionId}/cancel`
 		)
 	}
 }

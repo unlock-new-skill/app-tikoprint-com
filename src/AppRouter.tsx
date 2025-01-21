@@ -5,6 +5,8 @@ import { CircularProgress } from '@nextui-org/react'
 
 const LazyLogin = lazy(() => import('@app_pages/auth/login'))
 const LazyRegister = lazy(() => import('@app_pages/auth/register'))
+const LazyConfirmCode = lazy(() => import('@app_pages/auth/confirm_email'))
+const LazyForgotPassword = lazy(() => import('@app_pages/auth/forgot-password'))
 
 const LazyDashboard = lazy(() => import('@app_pages/dasboard'))
 const LazyDeposit = lazy(() => import('@app_pages/balance/deposit'))
@@ -15,41 +17,50 @@ const LazyTicket = lazy(() => import('@app_pages/ticket/listpage'))
 const LazyTicketDetail = lazy(() => import('@app_pages/ticket/detailpage'))
 
 const pages = [
-	// {
-	// 	path: '/',
-	// 	element: <Navigate to={'/dashboard'} />
-	// },
-	// {
-	// 	path: '/auth/login',
-	// 	element: <LazyLogin />
-	// },
-	// {
-	// 	path: '/dashboard',
-	// 	element: <LazyDashboard />
-	// },
-	// {
-	// 	path: '/auth/register',
-	// 	element: <LazyRegister />
-	// },
+	{
+		path: '/',
+		element: <Navigate to={'/dashboard'} />
+	},
+	{
+		path: '/auth/login',
+		element: <LazyLogin />
+	},
+	{
+		path: '/auth/confirm-email',
+		element: <LazyConfirmCode />
+	},
+	{
+		path: '/auth/forgot-password',
+		element: <LazyForgotPassword />
+	},
+	{
+		path: '/dashboard',
+		element: <LazyDashboard />
+	},
+	{
+		path: '/auth/register',
+		element: <LazyRegister />
+	},
 
-	// {
-	// 	path: '/print-and-ship',
-	// 	element: <LazyPrintAndShip />
-	// },
-	// {
-	// 	path: '/print-and-ship/new-order',
-	// 	element: <LazyPrintAndShipNewOrder />
-	// },
-	// { path: '/balance', element: <LazyBalance /> },
-	// { path: '/balance/deposit', element: <LazyDeposit /> },
-	// { path: '/ticket', element: <LazyTicket /> },
-	// { path: '/ticket/:id', element: <LazyTicketDetail /> },
+	{
+		path: '/print-and-ship',
+		element: <LazyPrintAndShip />
+	},
+	{
+		path: '/print-and-ship/new-order',
+		element: <LazyPrintAndShipNewOrder />
+	},
+	{ path: '/balance', element: <LazyBalance /> },
+	{ path: '/balance/deposit', element: <LazyDeposit /> },
+	{ path: '/ticket', element: <LazyTicket /> },
+	{ path: '/ticket/:id', element: <LazyTicketDetail /> },
 
 	{
 		path: '*',
 		element: <>SERVICE COMMING SOON</>
 	}
 ]
+// 1
 export default function AppRouter() {
 	//   const { user, isLoading } = useUserContext();
 

@@ -1,1 +1,9 @@
-{}
+{
+    "title": {
+        "activity_summary": "Tổng quan hoạt động bán hàng"
+    },
+    "label": {
+        "order": "Đơn hàng",
+        "total_paid": "Tổng chi"
+    }
+}

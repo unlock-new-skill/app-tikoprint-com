@@ -3,6 +3,7 @@ import BaseDateTimeRangePickerPropsDto from './BaseDateTimeRangePicker'
 import BaseInput from './BaseInput'
 import BaseInputArray from './BaseInputArray'
 import BaseInputNumber from './BaseInputNumber'
+import BaseOTPInput from './BaseOTPInput'
 import BaseRadioGroup from './BaseRadioGroup'
 import BaseSelect from './BaseSelect'
 import BaseSelectWithApi from './BaseSelectWithApi'
@@ -24,5 +25,6 @@ export {
 	RichTextEditor,
 	UploadVideo,
 	BaseDateTimeRangePickerPropsDto,
-	BaseInputArray
+	BaseInputArray,
+	BaseOTPInput
 }
