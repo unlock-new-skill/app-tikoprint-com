@@ -2,7 +2,8 @@
 	"title": {
 		"transaction_history": "Lịch sử giao dịch",
 		"deposit": "Nạp tiền",
-		"deposit_using_usdc_with_coinbase_gateway": "Nạp bằng USDC (Mạng Base)",
+		"deposit_using_usdc_with_coinbase_gateway": "Nạp bằng USDC (CoinBase)",
+		"deposit_using_banking": "Thanh toán chuyển khoản",
 		"deposit_using_paypal": "Nạp USD qua PayPal",
 		"auto_deposit": "Tự động xác nhận - Khuyến nghị",
 		"enter_amount_you_want_to_deposit": "Nhập số tiền bạn muốn nạp",
@@ -24,13 +25,18 @@
 		"withdraw": "Rút tiền",
 		"payment": "Thanh toán",
 		"deposit": "Nạp tiền",
-		"click_button_to_process": "Nhấn nút thanh toán để tiếp tục"
+		"click_button_to_process": "Nhấn nút thanh toán để tiếp tục",
+		"bank_checkout_note": "Sau khi thanh toán hoàn tất, vui lòng chờ ít phút để giao dịch được hoàn thành"
 	},
 	"placeholder": {
 		"amount": "Nhập số tiền (tối thiểu: 10)"
 	},
 	"button": {
 		"submit": "Gửi",
-		"pay": "Thanh toán"
+		"pay": "Thanh toán",
+		"go_to_checkout_page": "Tiếp tục tới trang thanh toán -->"
+	},
+	"message": {
+		"please_wait_a_second": "Vui lòng chờ chốc lát, số dư của bạn sẽ được cập nhật khi chúng tôi nhận được giao dịch"
 	}
 }

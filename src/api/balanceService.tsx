@@ -69,6 +69,14 @@ class Balance extends BaseService<TransactionDto, QueryListTransactiontDto> {
 		)
 	}
 
+	requestDepositBank = (data: RequestDepositCoinbaseDto) => {
+		return this.request.post<
+			ApiDataRes<{
+				checkoutUrl: string
+			}>
+		>('/api/seller/balance/deposit/bank-gateway', data)
+	}
+
 	getPendingTrans = (gateway: string) => {
 		return this.request.get<ApiDataRes<null | TransactionDto>>(
 			`/api/seller/balance/deposit/pending-transaction`,

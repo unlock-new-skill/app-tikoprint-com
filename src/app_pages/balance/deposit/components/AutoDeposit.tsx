@@ -2,11 +2,13 @@ import { Card, CardBody, Image } from '@nextui-org/react'
 import { useTranslation } from 'react-i18next'
 import { useCoinbaseFormModal } from '../hooks/useCoinbaseFormModal'
 import { usePaypalFormModal } from '../hooks/usePaypalFormModal'
+import { useBankFormModal } from '../hooks/useBankFormModal'
 
 export default function AutoDeposit() {
 	const { t } = useTranslation('balance')
 	const { handleOpenModalForm, renderModalform } = useCoinbaseFormModal()
 	const { handleOpenModalFormPaypal, renderModalformPaypal } = usePaypalFormModal()
+	const { handleOpenModalFormBank, renderModalformBank } = useBankFormModal()
 
 	const items = [
 		{
@@ -18,6 +20,11 @@ export default function AutoDeposit() {
 			text: t('title.deposit_using_paypal'),
 			image: 'https://i.pcmag.com/imagery/reviews/068BjcjwBw0snwHIq0KNo5m-15.fit_lim.size_1050x591.v1602794215.png',
 			onclick: handleOpenModalFormPaypal
+		},
+		{
+			text: t('title.deposit_using_banking') + ' (25.800vnd = 1$)',
+			image: 'https://taichinhvisa.vn/wp-content/uploads/2024/04/tao-ma-qr-tren-viet-qr.jpeg',
+			onclick: handleOpenModalFormBank
 		}
 	]
 	return (
@@ -33,7 +40,9 @@ export default function AutoDeposit() {
 									src={i.image}
 									className="aspect-video border"
 								/>
-								<p className=" text-center text-[1rem] py-2 ">{i.text}</p>
+								<p className=" text-center line-clamp-2 min-h-[4rem] text-[1rem] py-2 ">
+									{i.text}
+								</p>
 							</CardBody>
 						</Card>
 					</div>
@@ -41,6 +50,7 @@ export default function AutoDeposit() {
 			</div>
 			{renderModalform()}
 			{renderModalformPaypal()}
+			{renderModalformBank()}
 		</div>
 	)
 }
