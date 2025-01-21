@@ -1,4 +1,3 @@
-import { ApiException } from '@api/base/base-service.dto'
 import { balanceService } from '@api/balanceService'
 import { BaseInputNumber } from '@components/data-input'
 import yup from '@helper/yup-valiator'
@@ -11,6 +10,7 @@ import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
 import clsx from 'clsx'
+import { useRequest } from 'ahooks'
 // import { useLocation } from 'react-router-dom'
 // import { useUserContext } from '@providers/UserProvider'
 // import { useRequest } from 'ahooks'
@@ -20,6 +20,7 @@ export function useBankFormModal() {
 	const [open, setOpen] = useState(false)
 	const [order, setOrder] = useState<{
 		checkoutUrl: string
+		transactionId: string
 	} | null>(null)
 	const handleOpen = () => {
 		setOpen(true)
@@ -30,7 +31,7 @@ export function useBankFormModal() {
 		setOrder(null)
 	}
 	const schema = yup.object().shape({
-		amount: yup.number().required(t('message.invalid_number'))
+		amount: yup.number().required(t('message.invalid_number')).min(100000)
 	})
 	const {
 		control,
@@ -50,28 +51,42 @@ export function useBankFormModal() {
 			const response = await balanceService.requestDepositBank(data)
 			console.log('🚀 ~ usePaypalFormModal ~ response:', response)
 			setOrder({
-				checkoutUrl: response.data.data.checkoutUrl
+				checkoutUrl: response.data.data.checkoutUrl,
+				transactionId: response.data.data.transactionId
 			})
-		} catch (e: unknown) {
-			if (e instanceof ApiException) {
-				toast.error(e.message)
-			} else {
-				toast.error('An unexpected error occurred')
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		} catch (e: any) {
+			toast.error(e?.message)
+		}
+	})
+
+	useRequest(balanceService.getPendingTrans, {
+		defaultParams: ['BANK'],
+		onSuccess: data => {
+			console.log('🚀 ~ useBankFormModal ~ data:', data)
+			if (data?.data?.data) {
+				setOrder({
+					transactionId: data.data.data.id,
+					checkoutUrl: ('https://pay.payos.vn/web/' +
+						data.data.data.payment_gateway_order_id) as string
+				})
 			}
 		}
 	})
 
-	// useRequest(balanceService.getPendingTrans, {
-	// 	defaultParams: ['PAYPAL'],
-	// 	onSuccess: data => {
-	// 		if (data?.data?.data) {
-	// 			setOrder({
-	// 				id: data.data.data?.payment_gateway_order_id as string,
-	// 				amount: data.data.data.amount
-	// 			})
-	// 		}
-	// 	}
-	// })
+	const { run: runCancelOrder, loading: loadingCancel } = useRequest(
+		balanceService.cancelDepositTransaction,
+		{
+			manual: true,
+			onSuccess: () => {
+				setOrder(null)
+			},
+			onError: e => {
+				toast.error(e?.message)
+			}
+		}
+	)
+
 	//  COINBASE
 	// 	PAYPAL
 
@@ -177,6 +192,14 @@ export function useBankFormModal() {
 							</>
 						) : (
 							<>
+								<Button
+									variant="flat"
+									color="danger"
+									onPress={() => runCancelOrder(order.transactionId)}
+									isLoading={loadingCancel}
+								>
+									{t('button.cancel_order')}
+								</Button>
 								<Button
 									color="primary"
 									onPress={() => window.open(order.checkoutUrl, '_blank')}

@@ -3,7 +3,7 @@
 		"transaction_history": "Lịch sử giao dịch",
 		"deposit": "Nạp tiền",
 		"deposit_using_usdc_with_coinbase_gateway": "Nạp bằng USDC (CoinBase)",
-		"deposit_using_banking": "Thanh toán chuyển khoản",
+		"deposit_using_banking": "Chuyển khoản",
 		"deposit_using_paypal": "Nạp USD qua PayPal",
 		"auto_deposit": "Tự động xác nhận - Khuyến nghị",
 		"enter_amount_you_want_to_deposit": "Nhập số tiền bạn muốn nạp",
@@ -34,7 +34,8 @@
 	"button": {
 		"submit": "Gửi",
 		"pay": "Thanh toán",
-		"go_to_checkout_page": "Tiếp tục tới trang thanh toán -->"
+		"go_to_checkout_page": "Tiếp tục tới trang thanh toán -->",
+		"cancel_order": "Huỷ yêu cầu nạp"
 	},
 	"message": {
 		"please_wait_a_second": "Vui lòng chờ chốc lát, số dư của bạn sẽ được cập nhật khi chúng tôi nhận được giao dịch"

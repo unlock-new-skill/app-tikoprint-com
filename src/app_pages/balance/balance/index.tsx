@@ -108,7 +108,7 @@ export default function Balance() {
 				defaultQuery={{ page: 1, pageSize: 10, sort: 'updatedAt' }}
 				columns={colums}
 				key_field={'id'}
-
+				disable_condition={row => row.status === 'CANCELED'}
 				// renderForm={setQuery => <FilterTransaction setQuery={setQuery as any} />}
 			>
 				{/* {renderDetailFulfillmentOrderModal()} */}

@@ -20,6 +20,7 @@ export function usePaypalFormModal() {
 	const [order, setOrder] = useState<{
 		amount: number
 		id: string
+		transactionId: string
 	} | null>(null)
 	const handleOpen = () => {
 		setOpen(true)
@@ -30,7 +31,7 @@ export function usePaypalFormModal() {
 		setOrder(null)
 	}
 	const schema = yup.object().shape({
-		amount: yup.number().required(t('message.invalid_number'))
+		amount: yup.number().required(t('message.invalid_number')).min(5)
 	})
 	const {
 		control,
@@ -47,10 +48,11 @@ export function usePaypalFormModal() {
 	const onSubmit = handleSubmit(async data => {
 		try {
 			const response = await balanceService.requestDepositPaypal(data)
-			console.log('🚀 ~ usePaypalFormModal ~ response:', response)
+			// console.log('🚀 ~ usePaypalFormModal ~ response:', response)
 			setOrder({
 				amount: data.amount,
-				id: response.data.data
+				id: response.data.data.orderId,
+				transactionId: response.data.data.transactionId
 			})
 		} catch (e: unknown) {
 			if (e instanceof ApiException) {
@@ -67,11 +69,25 @@ export function usePaypalFormModal() {
 			if (data?.data?.data) {
 				setOrder({
 					id: data.data.data?.payment_gateway_order_id as string,
-					amount: data.data.data.amount
+					amount: data.data.data.amount,
+					transactionId: data.data.data.id
 				})
 			}
 		}
 	})
+
+	const { run: runCancelOrder, loading: loadingCancel } = useRequest(
+		balanceService.cancelDepositTransaction,
+		{
+			manual: true,
+			onSuccess: () => {
+				setOrder(null)
+			},
+			onError: e => {
+				toast.error(e?.message)
+			}
+		}
+	)
 	//  COINBASE
 	// 	PAYPAL
 
@@ -144,6 +160,17 @@ export function usePaypalFormModal() {
 								</Button>
 							)}
 						</form>
+						{order && (
+							<Button
+								variant="flat"
+								color="danger"
+								onPress={() => runCancelOrder(order.transactionId)}
+								isLoading={loadingCancel}
+							>
+								{t('button.cancel_order')}
+							</Button>
+						)}
+
 						<div
 							className={clsx({
 								hidden: !order

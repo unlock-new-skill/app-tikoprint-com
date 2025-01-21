@@ -30,7 +30,7 @@ export function useCoinbaseFormModal() {
 		setChargeId(null)
 	}
 	const schema = yup.object().shape({
-		amount: yup.number().required(t('message.invalid_number'))
+		amount: yup.number().required(t('message.invalid_number')).min(5)
 	})
 	const {
 		control,
