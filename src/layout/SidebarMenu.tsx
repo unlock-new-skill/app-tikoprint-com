@@ -343,6 +343,11 @@ function User({ collapsed }: { collapsed: boolean }) {
 					</div>
 				</PopoverContent>
 			</Popover>
+			<Link to={'https://t.me/unlock_new_skill'} target="_blank" className="text-primary-500">
+				<Button fullWidth className="mt-1" color="primary">
+					Contact Support
+				</Button>
+			</Link>
 			{!collapsed && (
 				<div className=" flex justify-center py-1">
 					<Link to={'/balance/deposit'} className="text-primary-500">
