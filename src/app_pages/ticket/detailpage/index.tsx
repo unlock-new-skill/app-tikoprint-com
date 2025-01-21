@@ -11,6 +11,8 @@ import {
 	// DrawerBody,
 	Button,
 	CircularProgress,
+	Drawer,
+	DrawerContent,
 	Popover,
 	PopoverContent,
 	PopoverTrigger
@@ -19,7 +21,7 @@ import { useUserContext } from '@providers/UserProvider'
 import { useRequest } from 'ahooks'
 import clsx from 'clsx'
 import moment from 'moment'
-import { useEffect } from 'react'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 // import { useState } from 'react'
 import { useFieldArray, UseFieldArrayAppend, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -38,6 +40,7 @@ export default function DetailTicket() {
 	const { t } = useTranslation('ticket')
 	const { id } = useParams()
 	const { state } = useLocation()
+	const [openDrawer, setOpenDrawer] = useState(false)
 	const navigate = useNavigate()
 	const schema = yup.object().shape({
 		title: yup.string().required(t('message.required_field')).min(20),
@@ -210,13 +213,13 @@ export default function DetailTicket() {
 							) : null}
 						</div>
 						{id !== 'new' && (
-							<div className="flex flex-col gap-2  border rounded-md p-2 max-w-[800px] ">
+							<div className="flex flex-col gap-2  border rounded-md p-2 flex-1 ">
 								{fields.length === 0 ? (
 									<p>{t('label.no_chat_to_display')}</p>
 								) : (
 									<p className="h-max">{t('label.message')}</p>
 								)}
-								<div className="flex flex-col gap-3 h-[55vh] overflow-y-scroll py-1 ">
+								<div className="flex flex-col gap-3 h-[77vh] overflow-y-scroll py-1 ">
 									{fields.map(field => {
 										return (
 											<div
@@ -251,7 +254,30 @@ export default function DetailTicket() {
 										)
 									})}
 								</div>
-								{status === 'OPENING' && <ChatForm append={append} />}
+
+								<Drawer
+									isOpen={openDrawer}
+									onClose={() => setOpenDrawer(false)}
+									placement="bottom"
+								>
+									<DrawerContent>
+										<div className="flex justify-center w-full p-4">
+											<ChatForm
+												append={append}
+												setOpenDrawer={setOpenDrawer}
+											/>
+										</div>
+									</DrawerContent>
+								</Drawer>
+								{status === 'OPENING' && (
+									<Button
+										color="primary"
+										variant="flat"
+										onPress={() => setOpenDrawer(true)}
+									>
+										Chat
+									</Button>
+								)}
 							</div>
 						)}
 					</form>
@@ -261,7 +287,13 @@ export default function DetailTicket() {
 	)
 }
 
-function ChatForm({ append }: { append: UseFieldArrayAppend<TicketDto, 'TicketChat'> }) {
+function ChatForm({
+	append,
+	setOpenDrawer
+}: {
+	append: UseFieldArrayAppend<TicketDto, 'TicketChat'>
+	setOpenDrawer: Dispatch<SetStateAction<boolean>>
+}) {
 	const { user } = useUserContext()
 	const schema = yup.object().shape({
 		message: yup.string().min(3).required()
@@ -286,6 +318,7 @@ function ChatForm({ append }: { append: UseFieldArrayAppend<TicketDto, 'TicketCh
 				sender_name: user?.email,
 				role: 'SELLER'
 			})
+			setOpenDrawer(false)
 			// handleClose()
 		} catch (e: any) {
 			toast.error(e?.message)
@@ -295,7 +328,7 @@ function ChatForm({ append }: { append: UseFieldArrayAppend<TicketDto, 'TicketCh
 	return (
 		<form
 			onSubmit={onSubmit}
-			className="flex flex-col gap-2 bg-foreground-200 px-4 py-2 rounded-md"
+			className="flex flex-col gap-2 bg-foreground-200 px-4 py-2 rounded-md max-w-[600px]"
 		>
 			<RichTextEditor
 				isRequired
