@@ -23,7 +23,7 @@ import { Image } from '@nextui-org/react'
 
 import { useTranslation } from 'react-i18next'
 import { Link, useNavigate } from 'react-router-dom'
-import { FaStar, FaTicket } from 'react-icons/fa6'
+import { FaStar, FaTelegram, FaTicket } from 'react-icons/fa6'
 // import { ChangeLanguage } from '@app_pages/homepage/components/Header'
 interface ItemProps {
 	link: string
@@ -344,8 +344,8 @@ function User({ collapsed }: { collapsed: boolean }) {
 				</PopoverContent>
 			</Popover>
 			<Link to={'https://t.me/unlock_new_skill'} target="_blank" className="text-primary-500">
-				<Button fullWidth className="mt-1" color="primary">
-					Contact Support
+				<Button fullWidth className="mt-1" color="primary" isIconOnly={collapsed}>
+					{collapsed ? <FaTelegram /> : 'Contact Support'}
 				</Button>
 			</Link>
 			{!collapsed && (
